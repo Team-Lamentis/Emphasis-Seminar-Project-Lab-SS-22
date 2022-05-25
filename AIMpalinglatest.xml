@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+chan cararrive,carcommunicate,pathclear, pathnotclear, donecheckpath, checkpath, afterwait;
+int c=0;</declaration>
+	<template>
+		<name x="5" y="5">Car</name>
+		<declaration>// Place local declarations here.
+clock wait;</declaration>
+		<location id="id0" x="0" y="170">
+			<name x="-17" y="187">start</name>
+		</location>
+		<location id="id1" x="314" y="170">
+			<name x="238" y="195">car_communicate</name>
+		</location>
+		<location id="id2" x="153" y="170">
+			<name x="102" y="195">car_arrive</name>
+		</location>
+		<location id="id3" x="510" y="42">
+			<name x="476" y="8">car_move</name>
+		</location>
+		<location id="id4" x="535" y="280">
+			<name x="501" y="297">car_wait</name>
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="552" y="153">afterwait?</label>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id4"/>
+			<label kind="synchronisation" x="382" y="255">pathnotclear?</label>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="365" y="68">pathclear?</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="187" y="144">carcommunicate!</label>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="68" y="144">cararrive!</label>
+			<label kind="assignment" x="18" y="170">c:=1</label>
+		</transition>
+	</template>
+	<template>
+		<name>server</name>
+		<location id="id5" x="-347" y="-76">
+			<name x="-399" y="-110">server_idle</name>
+		</location>
+		<location id="id6" x="-85" y="-204">
+			<name x="-95" y="-238">Check_path</name>
+		</location>
+		<location id="id7" x="323" y="-34">
+			<name x="306" y="-77">receivesignal</name>
+		</location>
+		<location id="id8" x="-68" y="93">
+			<name x="-78" y="59">enterqueu</name>
+		</location>
+		<init ref="id5"/>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id7"/>
+			<label kind="synchronisation" x="-50" y="12">carcommunicate?</label>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id5"/>
+			<label kind="synchronisation" x="-340" y="-170">donecheckpath?</label>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id8"/>
+			<label kind="synchronisation" x="-329" y="-9">cararrive?</label>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="93" y="-161">checkpath!</label>
+		</transition>
+	</template>
+	<template>
+		<name>path</name>
+		<location id="id9" x="-144" y="0">
+			<name x="-154" y="-34">start</name>
+		</location>
+		<location id="id10" x="153" y="0">
+			<name x="178" y="-17">available</name>
+		</location>
+		<location id="id11" x="442" y="-8">
+			<name x="391" y="-76">notavailable</name>
+		</location>
+		<init ref="id9"/>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="569" y="-51">pathnotclear!</label>
+			<nail x="552" y="-102"/>
+			<nail x="561" y="68"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="119" y="-85">pathclear!</label>
+			<nail x="119" y="-59"/>
+			<nail x="178" y="-59"/>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="153" y="204">checkpath?</label>
+			<nail x="0" y="229"/>
+			<nail x="357" y="229"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="76" y="-212">donecheckpath!</label>
+			<nail x="119" y="-280"/>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id9"/>
+			<label kind="synchronisation" x="76" y="76">donecheckpath!</label>
+			<nail x="34" y="119"/>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="289" y="51">afterwait!</label>
+			<nail x="306" y="110"/>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id10"/>
+			<label kind="synchronisation" x="-51" y="-17">checkpath?</label>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+carone = Car();
+//cartwo =Car();
+
+server1= server();
+//server2=server();
+
+path1= path();
+//path2=path();
+// List one or more processes to be composed into a system.
+system carone,server1, path1;
+</system>
+	<queries>
+		<query>
+			<formula></formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>
