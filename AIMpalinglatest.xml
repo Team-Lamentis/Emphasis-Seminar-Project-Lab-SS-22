@@ -25,6 +25,11 @@ clock wait;</declaration>
 		</location>
 		<init ref="id0"/>
 		<transition>
+			<source ref="id3"/>
+			<target ref="id0"/>
+			<nail x="0" y="42"/>
+		</transition>
+		<transition>
 			<source ref="id4"/>
 			<target ref="id3"/>
 			<label kind="synchronisation" x="552" y="153">afterwait?</label>
