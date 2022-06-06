@@ -1,0 +1,93 @@
+m255
+K4
+z2
+!s11e MIXED_VERSIONS
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dD:/
+Emyfsm
+Z0 w1654466844
+Z1 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z2 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
+!i122 52
+Z3 dD:/Lamentis/Team-Lamentis-
+Z4 8D:/Lamentis/Team-Lamentis-/TestingSlide.vhd
+Z5 FD:/Lamentis/Team-Lamentis-/TestingSlide.vhd
+l0
+L5 1
+VXnlk:^PL`fILd_H1U^Hcg2
+!s100 7RIgAZc7j?C^<lQ?m=S9m3
+Z6 OV;C;2021.1;73
+32
+Z7 !s110 1654473272
+!i10b 1
+Z8 !s108 1654473272.000000
+Z9 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Lamentis/Team-Lamentis-/TestingSlide.vhd|
+Z10 !s107 D:/Lamentis/Team-Lamentis-/TestingSlide.vhd|
+!i113 1
+Z11 o-work work -2002 -explicit
+Z12 tExplicit 1 CvgOpt 0
+Abehavioral
+R1
+R2
+Z13 DEx4 work 5 myfsm 0 22 Xnlk:^PL`fILd_H1U^Hcg2
+!i122 52
+l12
+Z14 L9 47
+Z15 V=;eleM>IN;e0R<h4Sj_3j1
+Z16 !s100 4h14mQ:1FWHW=`1=[8_ng2
+R6
+32
+R7
+!i10b 1
+R8
+R9
+R10
+!i113 1
+R11
+R12
+Emyserver
+Z17 w1654473268
+R1
+R2
+!i122 51
+R3
+Z18 8D:/Lamentis/Team-Lamentis-/AIM.vhd
+Z19 FD:/Lamentis/Team-Lamentis-/AIM.vhd
+l0
+L4 1
+VTzGj>S@c:OBYhokPa7^T81
+!s100 H41<`ZUGf<FQ_>z6S=cc@3
+R6
+32
+R7
+!i10b 1
+R8
+Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|D:/Lamentis/Team-Lamentis-/AIM.vhd|
+Z21 !s107 D:/Lamentis/Team-Lamentis-/AIM.vhd|
+!i113 1
+R11
+R12
+Abehavioral
+R1
+R2
+DEx4 work 8 myserver 0 22 TzGj>S@c:OBYhokPa7^T81
+!i122 51
+l16
+L10 65
+V5;M^T6dec[CYEkAl65:>J1
+!s100 `kCzSeSCHKenRO?L?0XR50
+R6
+32
+R7
+!i10b 1
+R8
+R20
+R21
+!i113 1
+R11
+R12
