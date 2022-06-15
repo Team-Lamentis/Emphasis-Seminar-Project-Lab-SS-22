@@ -1,17 +1,17 @@
-D:/Lamentis/Team-Lamentis-/AIM.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/Lamentis/Team-Lamentis-/AIM.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 2021.1 Compiler 2021.02 Feb  3 2021
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity myServer
--- Compiling architecture behavioral of myServer
-
-} {} {}} D:/Lamentis/Team-Lamentis-/TestingSlide.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/Lamentis/Team-Lamentis-/TestingSlide.vhd
+D:/Lamentis/Team-Lamentis-/TestingSlide.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/Lamentis/Team-Lamentis-/TestingSlide.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 2021.1 Compiler 2021.02 Feb  3 2021
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Compiling entity myFSM
 -- Compiling architecture behavioral of myFSM
+
+} {} {}} D:/Lamentis/Team-Lamentis-/AIM.vhd {1 {vcom -work work -2002 -explicit -stats=none D:/Lamentis/Team-Lamentis-/AIM.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 2021.1 Compiler 2021.02 Feb  3 2021
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity myServer
+-- Compiling architecture behavioral of myServer
 
 } {} {}}
