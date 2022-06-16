@@ -68,7 +68,7 @@ clock wait;</declaration>
 			<name x="306" y="-77">receivesignal</name>
 		</location>
 		<location id="id8" x="-68" y="93">
-			<name x="-78" y="59">enterqueu</name>
+			<name x="-85" y="59">enterqueue</name>
 		</location>
 		<init ref="id5"/>
 		<transition>
