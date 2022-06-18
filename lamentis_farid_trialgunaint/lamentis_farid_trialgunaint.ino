@@ -51,14 +51,14 @@ void setup() {
    
 
   xQueueSendToBack( Car_Queue,&CarA,100);
-  xQueueSendToBack(  Car_Queue,&CarB,100);
-  xQueueSendToBack(  Car_Queue,&CarC,100);
-  xQueueSendToBack(  Car_Queue,&CarD,100);
-  xQueueSendToBack(  Car_Queue,&CarE,100);
+  xQueueSendToBack( Car_Queue,&CarB,100);
+  xQueueSendToBack( Car_Queue,&CarC,100);
+  xQueueSendToBack( Car_Queue,&CarD,100);
+  xQueueSendToBack( Car_Queue,&CarE,100);
   xQueueSendToBack( Direction_queue,&South,100);
-  xQueueSendToBack(  Direction_queue,&North,100);
-  xQueueSendToBack(  Direction_queue,&East,100);
-  xQueueSendToBack(  Direction_queue,&West,100);
+  xQueueSendToBack( Direction_queue,&North,100);
+  xQueueSendToBack( Direction_queue,&East,100);
+  xQueueSendToBack( Direction_queue,&West,100);
     
   
   Serial.begin(1200);
@@ -69,7 +69,7 @@ void setup() {
   //Task wait is created with priority '1'
   xTaskCreate(car_wait, "Car wait", 1000, NULL, 1, &TaskHandle_2);
   //Task communication of the car is created with priority '1'
-  xTaskCreate(car_communicate, "Car communicate", 1000, NULL, 1, &TaskHandle_3);
+  xTaskCreate(car_communicate, "Car communicate", 1000, NULL, 2, &TaskHandle_3);
   //Task to add car in queue after queue fully utilised with priority '1'
  // xTaskCreate(newcar_enter, "Car new", 1000, NULL, 1, &TaskHandle_4);
 
@@ -112,17 +112,16 @@ void car_communicate(void*parameter)
                            KeretaBaru[2]=CarC;
                            KeretaBaru[3]=CarD;
                            KeretaBaru[4]=CarE;
-                           xQueueSendToBack( Car_Queue,&CarA,100);
+                           xQueueSendToBack(  Car_Queue,&CarA,100);
                            xQueueSendToBack(  Car_Queue,&CarB,100);
                            xQueueSendToBack(  Car_Queue,&CarC,100);
                            xQueueSendToBack(  Car_Queue,&CarD,100);
                            xQueueSendToBack(  Car_Queue,&CarE,100);
-
                            Direction[0]= North;
                            Direction[1]=East;
                            Direction[2]=West;
                            Direction[3]=South;
-                           xQueueSendToBack( Direction_queue,&North,100);
+                           xQueueSendToBack(  Direction_queue,&North,100);
                            xQueueSendToBack(  Direction_queue,&East,100);
                            xQueueSendToBack(  Direction_queue,&West,100);
                            xQueueSendToBack(  Direction_queue,&South,100);
@@ -139,10 +138,13 @@ void car_communicate(void*parameter)
                            
                          }
                       else{
+                        
+                        vTaskSuspend(TaskHandle_3);
                              
                          }
-                      //vTaskSuspend(TaskHandle_3);
-                 }
+                     
+                  }
+                   
        }          
          
 
@@ -167,9 +169,12 @@ void car_move(void*parameter)
                   else 
                       {
                         y = ""; 
-                        vTaskDelay(300 / portTICK_PERIOD_MS);       
+                        vTaskDelay(300 / portTICK_PERIOD_MS);
+                        vTaskResume(TaskHandle_3);       
                       }
+
       }
+                       
   }     
           
 // Task Car Wait 
@@ -187,29 +192,30 @@ void car_wait(void*parameter)
                           Serial.print("Wait ");
                           Serial.println(z);
                           vTaskDelay(2000 / portTICK_PERIOD_MS);
-
-
-                
-           }
-           else{
+                      }
+                    else
+                      {
                          vTaskDelay(300 / portTICK_PERIOD_MS);
-                         }
+                          vTaskResume(TaskHandle_3);
+                       }
+                      
           }
+          
     }
 
 
-//void newcar_enter(void*parameter)
-// {  
-//        while(1)
- //         {
+/*void newcar_enter(void*parameter)
+ {  
+        while(1)
+          {
           
-  //            Serial.println("new car is coming");
-    //          String ok = xQueueSend(Car_Queue,&carNew,500);
-      //        puts (ok ? "OK" : "FAILED");
-        //      vTaskDelay(300 / portTICK_PERIOD_MS);
+              Serial.println("new car is coming");
+              String ok = xQueueSend(Car_Queue,&carNew,500);
+              puts (ok ? "OK" : "FAILED");
+              vTaskDelay(300 / portTICK_PERIOD_MS);
               
           
-          //}
+          }
          
    
- //}
+ }*/
