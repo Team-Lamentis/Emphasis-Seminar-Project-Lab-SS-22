@@ -72,7 +72,8 @@ void car_communicate(void*parameter)
                                       
                 }
 
-          
+          vTaskSuspend(TaskHandle_3);
+                  
                 
                if(queue_car[3]==CarA)
                 {
@@ -85,7 +86,6 @@ void car_communicate(void*parameter)
                  
 
 
-                  vTaskSuspend(TaskHandle_3);
                   
 
 
