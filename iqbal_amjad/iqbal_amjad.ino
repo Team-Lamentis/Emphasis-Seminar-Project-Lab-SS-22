@@ -7,6 +7,8 @@ int queue_car[4]= {1,2,3,4};
 int signal_move;
 int signal_wait;
 int signal_cartwo_move;
+int change = 0;
+
 
 void car_move(void *parameter);
 void car_wait(void *parameter);
@@ -31,7 +33,7 @@ void setup() {
   xTaskCreate(car_wait, "Car wait", 1000, NULL, 1, &TaskHandle_2);
   //Task communication of the car is created with priority '2'
   xTaskCreate(car_communicate, "Car communicate", 1000, NULL, 2, &TaskHandle_3);
-  xTaskCreate(change_queue, "change queue", 1000, NULL, 0, &TaskHandle_4);
+ // xTaskCreate(change_queue, "change queue", 1000, NULL, 3, &TaskHandle_4);
 
    
 } 
@@ -39,6 +41,73 @@ void setup() {
 void loop() {}
 
 
+
+
+/*void change_queue(void*parameter)
+{
+        (void) parameter;
+        int change;
+
+        while(1)
+        {
+
+          if (change == 0)
+
+          {
+
+
+
+            
+          }
+          
+          
+          
+          
+          if(change == 1)
+          {
+            
+          
+          queue_car[0]=queue_car[1];
+          queue_car[1]=queue_car[2];
+          queue_car[2]=queue_car[3];
+          queue_car[3]=queue_car[0];
+
+          change =2;
+          
+          }
+
+
+           if(change == 2)
+          {
+            
+          
+          queue_car[1]=queue_car[2];
+          queue_car[2]=queue_car[3];
+          queue_car[3]=queue_car[4];
+          queue_car[4]=queue_car[0];
+
+          change =0;
+          
+          }
+
+
+             vTaskResume(TaskHandle_3);
+             vTaskResume(TaskHandle_2);
+             vTaskResume(TaskHandle_1);
+
+          
+
+
+
+          
+        }
+
+           
+
+  
+}
+
+*/
 // task car communicate 
 void car_communicate(void*parameter)
       { (void) parameter;
@@ -157,7 +226,7 @@ void car_move(void*parameter)
 
               }
 
-
+             
               vTaskResume(TaskHandle_3);
    }    
   } 
@@ -191,40 +260,15 @@ void car_wait(void*parameter)
               }
 
               
-              vTaskResume(TaskHandle_1);
-                vTaskSuspend(TaskHandle_1);
-                  vTaskSuspend(TaskHandle_2);
+                 vTaskResume(TaskHandle_1);
+                
+                 
     }
 
 
 
   }
-void change_queue(void*parameter)
-{
-        (void) parameter;
 
-        while(1)
-        {
-          queue_car[0]=queue_car[1];
-          queue_car[1]=queue_car[2];
-          queue_car[2]=queue_car[3];
-          queue_car[3]=queue_car[0];
-
-           vTaskResume(TaskHandle_3);
-             vTaskResume(TaskHandle_2);
-              vTaskResume(TaskHandle_1);
-
-          
-
-
-
-          
-        }
-
-           
-
-  
-}
 
 
 
