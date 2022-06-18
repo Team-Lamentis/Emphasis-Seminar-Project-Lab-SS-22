@@ -104,7 +104,7 @@ void car_communicate(void*parameter)
                                                                             
                       }
 
-                       if(uxQueueMessagesWaiting(Car_Queue) == 0)
+                      if(uxQueueMessagesWaiting(Car_Queue) == 0)
                         {
                            
                            KeretaBaru[0]=CarA;
@@ -138,9 +138,9 @@ void car_communicate(void*parameter)
                            
                          }
                       else{
-                        
+                       // Serial.println("task suspend");    
                         vTaskSuspend(TaskHandle_3);
-                             
+                          
                          }
                      
                   }
