@@ -5,9 +5,15 @@ String CarB= "Car B";
 String CarC= "Car C";
 String CarD= "Car D";
 String CarE= "Car E";
+String South= "South";
+String North = "North";
+String East = "East";
+String West = "West";
+
 String x;
 String y;
 String z;
+String a;
 
       
 int signal_move;
@@ -16,6 +22,7 @@ int signal_cartwo_move;
 
 QueueHandle_t Car_Queue;
 QueueHandle_t Waiting_queue;
+QueueHandle_t Direction_queue;
 
 
 
@@ -34,6 +41,7 @@ void setup() {
 
   Car_Queue = xQueueCreate( 5, sizeof( String ) );
   Waiting_queue = xQueueCreate( 5, sizeof( String ) );
+  Direction_queue = xQueueCreate( 4, sizeof( String ) );
 
    
 
@@ -44,6 +52,10 @@ xQueueSendToBack(  Car_Queue,&CarB,100);
 xQueueSendToBack(  Car_Queue,&CarC,100);
 xQueueSendToBack(  Car_Queue,&CarD,100);
 xQueueSendToBack(  Car_Queue,&CarE,100);
+xQueueSendToBack( Direction_queue,&South,100);
+xQueueSendToBack(  Direction_queue,&North,100);
+xQueueSendToBack(  Direction_queue,&East,100);
+xQueueSendToBack(  Direction_queue,&West,100);
   
   Serial.begin(1200);
 
@@ -71,11 +83,14 @@ void car_communicate(void*parameter)
                 {      
                         
                                
-                      if(uxQueueMessagesWaiting(Car_Queue) != 0)
+                      if(uxQueueMessagesWaiting(Car_Queue) != 0 && uxQueueMessagesWaiting(Direction_queue) != 0 )
                       {
 xQueueReceive(Car_Queue,&x,0);
-                          Serial.println("Car   request ");
+xQueueReceive(Direction_queue,&a,0);
                           Serial.println(x);
+                          Serial.println("request ");
+                          Serial.println("To direction ");
+                          Serial.println(a);
                           vTaskDelay(1000 / portTICK_PERIOD_MS);
                          xQueueSendToBack(Waiting_queue ,&x,100);
                          signal_move=1;
