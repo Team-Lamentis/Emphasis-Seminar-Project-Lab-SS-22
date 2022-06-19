@@ -130,6 +130,7 @@ void car_communicate(void*parameter)
                         signal_wait=1;
                       }
                   vTaskSuspend(TaskHandle_1);
+                  // car move based on list move 
                   if(move_list[1]!=0)
                       { Serial.print("car ");
                         Serial.print(move_list[1] );
@@ -146,7 +147,7 @@ void car_communicate(void*parameter)
                         Serial.println(" move");
                       }
                    Serial.println("finish move");
-                   vTaskResume(TaskHandle_3);S
+                   vTaskResume(TaskHandle_3);
               }    
 }
 
