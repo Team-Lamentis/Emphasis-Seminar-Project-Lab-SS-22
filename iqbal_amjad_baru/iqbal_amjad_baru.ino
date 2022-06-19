@@ -146,7 +146,6 @@ void car_communicate(void*parameter)
                         Serial.print(move_list[3] );
                         Serial.println(" move");
                       }
-                   Serial.println("finish move");
                    vTaskResume(TaskHandle_3);
               }    
 }
